@@ -1,0 +1,172 @@
+/* Style.css */
+/* do not copy pls */
+
+@media screen and (max-width:780px) {
+    header {
+        height: 50px;
+    }
+
+    h1 {
+        font-size: 28px;
+        margin: 20px 0px 0px 0px;
+    }
+
+    nav, li, a {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    nav, li :hover {
+        padding: 5px 10px 10px 10px;
+    }
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: xx-large;
+    font-weight: 800;
+}
+
+header {
+    height: 100px;
+}
+
+footer {
+    height: 100px;
+    text-align: center;
+    background-color: lightgray;
+    border-top: 3px solid darkgray;
+    padding-top: 30px;
+}
+
+nav {
+    width: 100%;
+    height: 62px;
+    background-color: darkgrey;
+}
+
+nav ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+nav li {
+    list-style: none;
+    float: inline-start;
+}
+
+nav a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 20px 30px;
+    color: white;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+nav a :hover {
+    font-style: italic;
+}
+
+section {
+    width: 100%;
+    height: 300px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.Presentation {
+    width: auto;
+    height: auto;
+}
+
+.Comp {
+    width: auto;
+    height: auto;
+}
+
+.Contact {
+    width: auto;
+    height: auto;
+}
+
+/* Loisirs */
+.Interets {
+    width: auto;
+    height: auto;
+}
+
+/* Compétences */
+.Experience {
+    width: auto;
+    height: auto;
+}
+
+.Globale {
+    margin: 0 10%;
+}
+
+.Gauche {
+    float: left;
+    width: 30%;
+}
+
+.Droite {
+    float: right;
+    width: 70%;
+}
+
+.Gauche-Comp, .SousGauche {
+    float: left;
+    width: 50%;
+}
+
+.Droite-Comp, .SousDroite {
+    float: right;
+    width: 50%;
+}
+
+.Globale::after, .SousGlobale ::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.Centre {
+    text-align: center;
+    display: table;
+    margin: 0 auto;
+}
+
+.NavAccueil :hover {
+    border-top: 5px solid lightskyblue;
+    background-color: rgba(135, 206, 250, 0.3);
+}
+
+.NavParcours :hover {
+    border-top: 5px solid red;
+    background-color: rgba(255, 0, 0, 0.3);
+}
+
+.NavCompetences :hover {
+    border-top: 5px solid lightgreen;
+    background-color: rgba(144, 238, 144, 0.3);
+}
+
+.NavLoisirs :hover {
+    border-top: 5px solid steelblue;
+    background-color: rgba(70, 130, 180, 0.3);
+}
+
+.NavContact :hover {
+    border-top: 5px solid lightsalmon;
+    background-color: rgba(255, 160, 122, 0.3);
+}
