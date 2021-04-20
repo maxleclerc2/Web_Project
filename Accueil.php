@@ -1,30 +1,5 @@
 <?php
     session_start();
-    $message="";
-    if(count($_POST)>0) {
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = null;
-        $dbname = "db_web_project";
-        $con = new mysqli($servername, $username, $password, $dbname);
-
-        $req = "SELECT Mail, Mot_De_Passe, Admin from utilisateur
-        WHERE Mail = '" . $_POST["formMail"] . "'
-        AND Mot_De_Passe = '" . $_POST["formPsw"] . "'
-        ;";
-        $res = $con->query($req);
-
-        if($res->num_rows > 0) {
-            $row = $res->fetch_assoc();
-            $_SESSION['loggedin'] = true;
-            // $_SESSION["mail"] = $row["Mail"];
-            // $_SESSION["mdp"] = $row["Mot_De_Passe"];
-            $_SESSION["admin"] = $row["Admin"];
-            header("Location: test.php");
-        } else {
-            $message = "Invalid Username or Password!";
-        }
-    }
 ?>
 
 <!DOCTYPE html>
@@ -91,24 +66,23 @@
             </nav>";
         ?>
 
-        <div class="message">
-            <?php 
-                if($message!="") {
-                    echo $message;
-                } 
-            ?>
-        </div>
+        <section class="Presentation">
+            <h2>Présentation</h2>
 
-        <div>
-            <form name="Form" method="POST" action="">
-                <label for="formMail">E-Mail :</label>
-                <input type="text" id="formMail" name="formMail"><br>
-                <label for="formPsw">Mot de passe :</label>
-                <input type="text" id="formPsw" name="formPsw"><br>
-                <input type="submit" id="confirmSub" name="confirmSub" value="Confirmer">
-            </form>
-        </div>
-        
+            <div class="Globale">
+                <div class="Gauche">
+                    <img src="./Ressources/Wazowski Face Swap 1.jpg" alt="eh" height="300">
+                </div>
+    
+                <div class="Droite">
+                    <p>
+                        Rapide description.<br />
+                        Sur deux lignes.
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <footer>
             <p>
                 Site web créé par Maxence Leclerc<br />

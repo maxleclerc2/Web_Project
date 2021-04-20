@@ -1,40 +1,15 @@
 <?php
     session_start();
-    $message="";
-    if(count($_POST)>0) {
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = null;
-        $dbname = "db_web_project";
-        $con = new mysqli($servername, $username, $password, $dbname);
-
-        $req = "SELECT Mail, Mot_De_Passe, Admin from utilisateur
-        WHERE Mail = '" . $_POST["formMail"] . "'
-        AND Mot_De_Passe = '" . $_POST["formPsw"] . "'
-        ;";
-        $res = $con->query($req);
-
-        if($res->num_rows > 0) {
-            $row = $res->fetch_assoc();
-            $_SESSION['loggedin'] = true;
-            // $_SESSION["mail"] = $row["Mail"];
-            // $_SESSION["mdp"] = $row["Mot_De_Passe"];
-            $_SESSION["admin"] = $row["Admin"];
-            header("Location: test.php");
-        } else {
-            $message = "Invalid Username or Password!";
-        }
-    }
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bienvenue sur ma page d'accueil !</title>
+        <title>SANDBOX</title>
 
         <meta charset="UTF-8">
-        <meta name="description" content="Page d'accueil du site perso">
-        <meta name="keywords" content="HTML, CSS">
+        <meta name="description" content="SANDBOX">
+        <meta name="keywords" content="HTML, CSS, JavaScript, PHP">
         <meta name="author" content="Maxence Leclerc">
 
         <link rel="stylesheet" href="Style.css">
@@ -89,26 +64,26 @@
             echo "</ul>
             </div>
             </nav>";
+
+            $slug = $_GET['url'];
+
+            $req = "SELECT * from produit p, categorie c
+            WHERE c.Slug = '" . $slug . "' AND p.Id_Category = c.Id_Category
+            ;";
+            $res = $con->query($req);
+
+            echo "<div class='Globale'>";
+
+            if($res->num_rows > 0) {
+                while($row = $res->fetch_assoc()) {
+                    echo "<p>" . $row["Nom"] . "</p>";
+                }
+            }
+
+            echo "</div>";
+
         ?>
 
-        <div class="message">
-            <?php 
-                if($message!="") {
-                    echo $message;
-                } 
-            ?>
-        </div>
-
-        <div>
-            <form name="Form" method="POST" action="">
-                <label for="formMail">E-Mail :</label>
-                <input type="text" id="formMail" name="formMail"><br>
-                <label for="formPsw">Mot de passe :</label>
-                <input type="text" id="formPsw" name="formPsw"><br>
-                <input type="submit" id="confirmSub" name="confirmSub" value="Confirmer">
-            </form>
-        </div>
-        
         <footer>
             <p>
                 Site web créé par Maxence Leclerc<br />
