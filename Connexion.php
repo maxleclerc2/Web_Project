@@ -1,5 +1,10 @@
 <?php
     session_start();
+
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+        header("Location: Accueil.php");
+    }
+
     $message="";
     if(count($_POST)>0) {
         $servername = "127.0.0.1";
@@ -20,7 +25,7 @@
             // $_SESSION["mail"] = $row["Mail"];
             // $_SESSION["mdp"] = $row["Mot_De_Passe"];
             $_SESSION["admin"] = $row["Admin"];
-            header("Location: test.php");
+            header("Location: Accueil.php");
         } else {
             $message = "Invalid Username or Password!";
         }
@@ -60,17 +65,23 @@
             <ul>
             <li class='NavAccueil'>
             <a href='Accueil.php'>Accueil</a>
+            </li>
+            <li class='NavAccueil'>
+            <a href='Boutique.php'>Tous nos produits</a>
             </li>";
 
             if($res->num_rows > 0) {
                 while($row = $res->fetch_assoc()) {
                     echo "<li class='NavParcours'>";
-                    echo "<a href='test2.php?url=" . $row["Slug"] . "'>" . $row["Titre"] . "</a>";
+                    echo "<a href='Boutique.php?category=" . $row["Slug"] . "'>" . $row["Titre"] . "</a>";
                     echo "</li>";
                 }
             }
 
             if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+                echo "<li class='NavParcours'>";
+                echo "<a href='Compte.php'>Mon compte</a>";
+                echo "</li>";
                 echo "<li class='NavParcours'>";
                 echo "<a href='Deconnexion.php'>Déconnexion</a>";
                 echo "</li>";
@@ -82,7 +93,7 @@
 
             if(isset($_SESSION["admin"]) && $_SESSION["admin"] == 1) {
                 echo "<li class='NavParcours'>";
-                echo "<a href='test.php'>TEST.PHP</a>";
+                echo "<a href='Administration.php'>Espace administrateur</a>";
                 echo "</li>";
             }
 

@@ -71,23 +71,33 @@
             </div>
             </nav>";
 
-            $slug = $_GET['url'];
-
-            $req = "SELECT * from produit p, categorie c
-            WHERE c.Slug = '" . $slug . "' AND p.Id_Category = c.Id_Category
-            ;";
-            $res = $con->query($req);
-
             echo "<div class='Globale'>";
 
-            if($res->num_rows > 0) {
-                while($row = $res->fetch_assoc()) {
-                    echo "<p>" . $row["Nom"] . "</p>";
+            if(isset($_GET["category"])) {
+                $slug = $_GET["category"];
+            
+                $req = "SELECT * from produit p, categorie c
+                WHERE c.Slug = '" . $slug . "' AND p.Id_Category = c.Id_Category
+                ;";
+                $res = $con->query($req);
+
+                if($res->num_rows > 0) {
+                    while($row = $res->fetch_assoc()) {
+                        echo "<p>" . $row["Nom"] . "</p>";
+                    }
+                }
+            } else {
+                $req = "SELECT * from produit p;";
+                $res = $con->query($req);
+
+                if($res->num_rows > 0) {
+                    while($row = $res->fetch_assoc()) {
+                        echo "<p>" . $row["Nom"] . "</p>";
+                    }
                 }
             }
 
             echo "</div>";
-
         ?>
 
         <footer>
