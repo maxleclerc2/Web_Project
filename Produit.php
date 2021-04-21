@@ -73,32 +73,21 @@
 
             echo "<div class='Globale'>";
 
-            if(isset($_GET["category"])) {
-                $slug = $_GET["category"];
+            if(isset($_GET["product"])) {
+                $slug = $_GET["product"];
             
-                $req = "SELECT * from produit p, categorie c
-                WHERE c.Slug = '" . $slug . "' AND p.Id_Category = c.Id_Category
-                ;";
+                $req = "SELECT * from produit p
+                WHERE p.Slug = '" . $slug . "';";
                 $res = $con->query($req);
 
                 if($res->num_rows > 0) {
-                    while($row = $res->fetch_assoc()) {
-                        //echo "<p>" . $row["Nom"] . "</p>";
-                        echo "<a href='Produit.php?product=" . $row["Slug"] . "'>" . $row["Nom"] . "</a>";
-                        echo "</br>";
-                    }
+                    $row = $res->fetch_assoc();
+                    echo "<p>" . $row["Nom"] . "</p>";
+                    echo "<p>" . $row["Description"] . "</p>";
+                    echo "<p>" . $row["Prix"] . " €</p>";
                 }
             } else {
-                $req = "SELECT * from produit p;";
-                $res = $con->query($req);
-
-                if($res->num_rows > 0) {
-                    while($row = $res->fetch_assoc()) {
-                        //echo "<p>" . $row["Nom"] . "</p>";
-                        echo "<a href='Produit.php?product=" . $row["Slug"] . "'>" . $row["Nom"] . "</a>";
-                        echo "</br>";
-                    }
-                }
+                header("Location: Boutique.php");
             }
 
             echo "</div>";
