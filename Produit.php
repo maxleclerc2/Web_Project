@@ -37,15 +37,21 @@
             <a href='Accueil.php'>Accueil</a>
             </li>
             <li class='NavAccueil'>
-            <a href='Boutique.php'>Tous nos produits</a>
+            <a href='Boutique.php'>Tous nos</br>produits</a>
             </li>";
 
             if($res->num_rows > 0) {
                 while($row = $res->fetch_assoc()) {
                     echo "<li class='NavParcours'>";
-                    echo "<a href='Boutique.php?category=" . $row["Slug"] . "'>" . $row["Titre"] . "</a>";
+                    echo "<a href='Boutique.php?category=" . $row["Slug_Categorie"] . "'>" . $row["Titre_Categorie"] . "</a>";
                     echo "</li>";
                 }
+            }
+
+            if(isset($_SESSION["admin"]) && $_SESSION["admin"] == 1) {
+                echo "<li class='NavParcours'>";
+                echo "<a href='Administration.php'>Espace</br>administrateur</a>";
+                echo "</li>";
             }
 
             if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
@@ -61,12 +67,6 @@
                 echo "</li>";
             }
 
-            if(isset($_SESSION["admin"]) && $_SESSION["admin"] == 1) {
-                echo "<li class='NavParcours'>";
-                echo "<a href='Administration.php'>Espace administrateur</a>";
-                echo "</li>";
-            }
-
             echo "</ul>
             </div>
             </nav>";
@@ -77,14 +77,14 @@
                 $slug = $_GET["product"];
             
                 $req = "SELECT * from produit p
-                WHERE p.Slug = '" . $slug . "';";
+                WHERE p.Slug_Produit = '" . $slug . "';";
                 $res = $con->query($req);
 
                 if($res->num_rows > 0) {
                     $row = $res->fetch_assoc();
-                    echo "<p>" . $row["Nom"] . "</p>";
-                    echo "<p>" . $row["Description"] . "</p>";
-                    echo "<p>" . $row["Prix"] . " €</p>";
+                    echo "<p>" . $row["Nom_Produit"] . "</p>";
+                    echo "<p>" . $row["Description_Produit"] . "</p>";
+                    echo "<p>" . $row["Prix_Produit"] . " €</p>";
                 }
             } else {
                 header("Location: Boutique.php");

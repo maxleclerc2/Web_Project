@@ -37,15 +37,21 @@
             <a href='Accueil.php'>Accueil</a>
             </li>
             <li class='NavAccueil'>
-            <a href='Boutique.php'>Tous nos produits</a>
+            <a href='Boutique.php'>Tous nos</br>produits</a>
             </li>";
 
             if($res->num_rows > 0) {
                 while($row = $res->fetch_assoc()) {
                     echo "<li class='NavParcours'>";
-                    echo "<a href='Boutique.php?category=" . $row["Slug"] . "'>" . $row["Titre"] . "</a>";
+                    echo "<a href='Boutique.php?category=" . $row["Slug_Categorie"] . "'>" . $row["Titre_Categorie"] . "</a>";
                     echo "</li>";
                 }
+            }
+
+            if(isset($_SESSION["admin"]) && $_SESSION["admin"] == 1) {
+                echo "<li class='NavParcours'>";
+                echo "<a href='Administration.php'>Espace</br>administrateur</a>";
+                echo "</li>";
             }
 
             if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
@@ -61,12 +67,6 @@
                 echo "</li>";
             }
 
-            if(isset($_SESSION["admin"]) && $_SESSION["admin"] == 1) {
-                echo "<li class='NavParcours'>";
-                echo "<a href='Administration.php'>Espace administrateur</a>";
-                echo "</li>";
-            }
-
             echo "</ul>
             </div>
             </nav>";
@@ -77,14 +77,14 @@
                 $slug = $_GET["category"];
             
                 $req = "SELECT * from produit p, categorie c
-                WHERE c.Slug = '" . $slug . "' AND p.Id_Category = c.Id_Category
+                WHERE c.Slug_Categorie = '" . $slug . "' AND p.Id_Category = c.Id_Category
                 ;";
                 $res = $con->query($req);
 
                 if($res->num_rows > 0) {
                     while($row = $res->fetch_assoc()) {
                         //echo "<p>" . $row["Nom"] . "</p>";
-                        echo "<a href='Produit.php?product=" . $row["Slug"] . "'>" . $row["Nom"] . "</a>";
+                        echo "<a href='Produit.php?product=" . $row["Slug_Produit"] . "'>" . $row["Nom_Produit"] . "</a>";
                         echo "</br>";
                     }
                 }
@@ -95,7 +95,7 @@
                 if($res->num_rows > 0) {
                     while($row = $res->fetch_assoc()) {
                         //echo "<p>" . $row["Nom"] . "</p>";
-                        echo "<a href='Produit.php?product=" . $row["Slug"] . "'>" . $row["Nom"] . "</a>";
+                        echo "<a href='Produit.php?product=" . $row["Slug_Produit"] . "'>" . $row["Nom_Produit"] . "</a>";
                         echo "</br>";
                     }
                 }
