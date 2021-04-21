@@ -82,8 +82,12 @@
                 $res = $con->query($req);
 
                 if($res->num_rows > 0) {
+                    $row = $res->fetch_assoc();
+                    echo "<h2>" . $row["Description_Categorie"] . "</h2>";
+                    echo "<a href='Produit.php?product=" . $row["Slug_Produit"] . "'>" . $row["Nom_Produit"] . "</a>";
+                    echo "</br>";
+
                     while($row = $res->fetch_assoc()) {
-                        //echo "<p>" . $row["Nom"] . "</p>";
                         echo "<a href='Produit.php?product=" . $row["Slug_Produit"] . "'>" . $row["Nom_Produit"] . "</a>";
                         echo "</br>";
                     }
@@ -92,9 +96,10 @@
                 $req = "SELECT * from produit p;";
                 $res = $con->query($req);
 
+                echo "<h2>Retrouver tous nos produits au même endroit !</h2>";
+
                 if($res->num_rows > 0) {
                     while($row = $res->fetch_assoc()) {
-                        //echo "<p>" . $row["Nom"] . "</p>";
                         echo "<a href='Produit.php?product=" . $row["Slug_Produit"] . "'>" . $row["Nom_Produit"] . "</a>";
                         echo "</br>";
                     }
