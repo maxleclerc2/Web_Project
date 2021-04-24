@@ -13,21 +13,19 @@
         $dbname = "db_web_project";
         $con = new mysqli($servername, $username, $password, $dbname);
 
-        $req = "SELECT Mail, Mot_De_Passe, Admin from utilisateur
+        $req = "SELECT Id_User, Admin from utilisateur
         WHERE Mail = '" . $_POST["formMail"] . "'
-        AND Mot_De_Passe = '" . $_POST["formPsw"] . "'
-        ;";
+        AND Mot_De_Passe = '" . $_POST["formPsw"] . "';";
         $res = $con->query($req);
 
         if($res->num_rows > 0) {
             $row = $res->fetch_assoc();
             $_SESSION['loggedin'] = true;
-            // $_SESSION["mail"] = $row["Mail"];
-            // $_SESSION["mdp"] = $row["Mot_De_Passe"];
+            $_SESSION["id"] = $row["Id_User"];
             $_SESSION["admin"] = $row["Admin"];
             header("Location: Accueil.php");
         } else {
-            $message = "Invalid Username or Password!";
+            $message = "Identifiant ou mot de passe invalide !";
         }
     }
 ?>

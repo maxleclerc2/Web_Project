@@ -76,7 +76,7 @@
             </nav>";
         ?>
 
-        <section class="Presentation">
+        <section>
             <h2>Présentation</h2>
 
             <div class="Globale">

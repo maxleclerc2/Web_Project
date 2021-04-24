@@ -79,26 +79,84 @@
             </div>
             </nav>";
 
-            if(isset($_GET["query"])) {
-                $action = $_GET["query"];
+            $message = "Opération terminée avec succès.";
 
-                switch($action) {
-                    case "add":
+            if(isset($_POST["addUsrNom"])) {
+                $nom = $_POST["addUsrNom"];
+                $prenom = $_POST["addUsrPrenom"];
+                $mail = $_POST["addUsrMail"];
+                $telephone = $_POST["addUsrPortable"];
+                $mdp = $_POST["addUsrMdp"];
+                $adm = $_POST["radioAdmin"];
 
-                        break;
-                    case "mod":
+                $req = "INSERT INTO `Utilisateur`(`Admin`, `Nom`, `Prenom`, `Mail`, `Telephone`, `Mot_De_Passe`)
+                VALUES ('$adm', '$nom', '$prenom', '$mail', '$telephone', '$mdp');";
+                $res = $con->query($req);
 
-                        break;
-                    case "del":
+                $req = "SELECT Id_User FROM utilisateur WHERE Mail = '$mail'";
+                $res = $con->query($req);
 
-                        break;
-                    default:
-                        header("Location: Administration.php");
-                        break;
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
                 }
+
+                if($res->num_rows > 0) {
+                    $row = $res->fetch_assoc();
+                    $idUsr = $row["Id_User"];
+                } else {
+                    $message = "Une erreur est survenue.";
+                }
+
+                $ligne1 = $_POST["addUsrL1"];
+                $ligne2 = $_POST["addUsrL2"];
+                $cp = $_POST["addUsrCp"];
+                $ville = $_POST["addUsrVille"];
+                $pays = $_POST["addUsrPays"];
+
+                $req = "INSERT INTO `Adresse`(`Id_User`, `Adresse_Ligne_1`, `Adresse_Ligne_2`, `Code_Postal`, `Ville`, `Pays`)
+                VALUES ('$idUsr', '$ligne1', '$ligne2', '$cp', '$ville', '$pays');";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                }
+
+                $titulaire = $_POST["addUsrTitulaire"];
+                $num = $_POST["addUsrNum"];
+                $exp = $_POST["addUsrExp"];
+
+                $req = "INSERT INTO `Paiement`(`Id_User`, `Titulaire`, `Numero`, `Expiration`)
+                VALUES ('$idUsr', '$titulaire', '$num', '$exp');";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                }
+            } elseif(isset($_POST["modUsrNom"])) {
+
+            } elseif(isset($_POST["delUsrNom"])) {
+
+            } elseif(isset($_POST["addCatTitre"])) {
+
+            } elseif(isset($_POST["modCatTitre"])) {
+
+            } elseif(isset($_POST["delCatTitre"])) {
+
+            } elseif(isset($_POST["addProdNom"])) {
+
+            } elseif(isset($_POST["modProdNom"])) {
+
+            } elseif(isset($_POST["delProdNom"])) {
+
             } else {
                 header("Location: Administration.php");
             }
+
+            echo "<section>
+            <div class='Global'>
+            <h3>" . $message . "</h3>
+            </div>
+            </section>";
         ?>
 
         <footer>

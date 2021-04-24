@@ -78,6 +78,27 @@
             echo "</ul>
             </div>
             </nav>";
+
+            if(isset($_GET["query"])) {
+                $action = $_GET["query"];
+
+                switch($action) {
+                    case "add":
+
+                        break;
+                    case "mod":
+
+                        break;
+                    case "del":
+
+                        break;
+                    default:
+                        header("Location: Administration.php");
+                        break;
+                }
+            } else {
+                header("Location: Administration.php");
+            }
         ?>
 
         <footer>
