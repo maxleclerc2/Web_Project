@@ -134,8 +134,28 @@
                 }
             } elseif(isset($_POST["modUsrNom"])) {
 
-            } elseif(isset($_POST["delUsrNom"])) {
+            } elseif(isset($_POST["delUsrId"])) {
+                $idUsr = $_POST["delUsrId"];
+                $req = "DELETE FROM `Utilisateur` WHERE `Id_User`='$idUsr'";
+                $res = $con->query($req);
 
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                }
+
+                $req = "DELETE FROM `Adresse` WHERE `Id_User`='$idUsr'";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                }
+
+                $req = "DELETE FROM `Paiement` WHERE `Id_User`='$idUsr'";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                }
             } elseif(isset($_POST["addCatTitre"])) {
 
             } elseif(isset($_POST["modCatTitre"])) {

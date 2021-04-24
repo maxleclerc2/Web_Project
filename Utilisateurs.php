@@ -229,9 +229,44 @@
 
                         break;
                     case "mod":
+                        echo "<section>
+                            <div class='Global'>
+
+                            </div>                        
+                        </section>";
 
                         break;
                     case "del":
+                        echo "<section>
+                            <div class='Global'>
+                                <h1>Supprimer un utilisateur</h1>
+                    
+                                <form name='Form' method='POST' action='Traitement.php'>
+                                    <div>
+                                        <div class='FormulaireGauche'>
+                                            <label for='delUsrId'>Utilisateur à supprimer :</label>
+                                        </div>
+                                        <div class='FormulaireDroit'>
+                                            <select name='delUsrId'>";
+                                                $req = "SELECT Id_User, Nom, Prenom, Mail FROM `Utilisateur`";
+                                                $res = $con->query($req);
+
+                                                if($res->num_rows > 0) {
+                                                    while($row = $res->fetch_assoc()) {
+                                                        echo "<option value=" . $row["Id_User"] . ">" . $row["Nom"] . " "  . $row["Prenom"] . " (" . $row["Mail"] . ")</option>";
+                                                    }
+                                                } else {
+                                                    echo "<option value='-1'>Aucun utilisateur trouvé</option>";
+                                                }
+                                            echo "</select>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <input type='submit' id='confirmDel' name='confirmDel' value='Supprimer' ><br>
+                                </form>
+                            </div> 
+                        </section>";
 
                         break;
                     default:
