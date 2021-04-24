@@ -1,15 +1,19 @@
 <?php
     session_start();
+
+    if(!isset($_SESSION["admin"]) || $_SESSION["admin"] != 1) {
+        header("Location: Connexion.php");
+    }
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bienvenue sur ma page d'accueil !</title>
+        <title>SANDBOX</title>
 
         <meta charset="UTF-8">
-        <meta name="description" content="Page d'accueil du site perso">
-        <meta name="keywords" content="HTML, CSS">
+        <meta name="description" content="SANDBOX">
+        <meta name="keywords" content="HTML, CSS, JavaScript, PHP">
         <meta name="author" content="Maxence Leclerc">
 
         <link rel="stylesheet" href="Style.css">
@@ -75,23 +79,6 @@
             </div>
             </nav>";
         ?>
-
-        <section class="Presentation">
-            <h2>Présentation</h2>
-
-            <div class="Globale">
-                <div class="Gauche">
-                    <img src="./Ressources/Wazowski Face Swap 1.jpg" alt="eh" height="300">
-                </div>
-    
-                <div class="Droite">
-                    <p>
-                        Rapide description.<br />
-                        Sur deux lignes.
-                    </p>
-                </div>
-            </div>
-        </section>
 
         <footer>
             <p>

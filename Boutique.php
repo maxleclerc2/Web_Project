@@ -48,6 +48,10 @@
                 }
             }
 
+            echo "<li class='NavAccueil'>";
+            echo "<a href='Panier.php'>Mon panier</a>";
+            echo "</li>";
+
             if(isset($_SESSION["admin"]) && $_SESSION["admin"] == 1) {
                 echo "<li class='NavParcours'>";
                 echo "<a href='Administration.php'>Espace</br>administrateur</a>";
@@ -96,7 +100,7 @@
                 $req = "SELECT * from produit p;";
                 $res = $con->query($req);
 
-                echo "<h2>Retrouver tous nos produits au même endroit !</h2>";
+                echo "<h2>Retrouvez tous nos produits au même endroit !</h2>";
 
                 if($res->num_rows > 0) {
                     while($row = $res->fetch_assoc()) {

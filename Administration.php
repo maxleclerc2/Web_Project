@@ -16,6 +16,7 @@
         <meta name="keywords" content="HTML, CSS, JavaScript, PHP">
         <meta name="author" content="Maxence Leclerc">
 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="Style.css">
     </head>
 
@@ -52,6 +53,10 @@
                 }
             }
 
+            echo "<li class='NavAccueil'>";
+            echo "<a href='Panier.php'>Mon panier</a>";
+            echo "</li>";
+
             if(isset($_SESSION["admin"]) && $_SESSION["admin"] == 1) {
                 echo "<li class='NavParcours'>";
                 echo "<a href='Administration.php'>Espace</br>administrateur</a>";
@@ -75,6 +80,68 @@
             </div>
             </nav>";
         ?>
+
+        <section class="Administration">
+            <div class="Global">
+                <div class="SousGlobale">
+                    <h2>Gestion des utilisateurs</h2>
+
+                    </br>
+
+                    <div class="BoutonGauche">
+                        <a href="Utilisateurs.php?query=add" class="btn btn-primary">Ajouter un utilisateur</a>
+                    </div>
+
+                    <div class="BoutonMilieu">
+                        <a href="Utilisateurs.php?query=mod" class="btn btn-warning">Modifier un utilisateur</a>
+                    </div>
+                    
+                    <div class="BoutonDroit">
+                        <a href="Utilisateurs.php?query=del" class="btn btn-danger">Supprimer un utilisateur</a>
+                    </div>
+                </div>
+
+                <div class="SousGlobale">
+                    </br>
+
+                    <h2>Gestion des catégories</h2>
+
+                    </br>
+
+                    <div class="BoutonGauche">
+                        <a href="Categories.php?query=add" class="btn btn-primary">Ajouter une catégorie</a>
+                    </div>
+
+                    <div class="BoutonMilieu">
+                        <a href="Categories.php?query=mod" class="btn btn-warning">Modifier une catégorie</a>
+                    </div>
+                    
+                    <div class="BoutonDroit">
+                        <a href="Categories.php?query=del" class="btn btn-danger">Supprimer une catégorie</a>
+                    </div>
+                </div>
+
+                <div class="SousGlobale">
+                    </br>
+
+                    <h2>Gestion des produits</h2>
+
+                    </br>
+
+                    <div class="BoutonGauche">
+                        <a href="Articles.php?query=add" class="btn btn-primary">Ajouter un article</a>
+                    </div>
+
+                    <div class="BoutonMilieu">
+                        <a href="Articles.php?query=mod" class="btn btn-warning">Modifier un article</a>
+                    </div>
+                    
+                    <div class="BoutonDroit">
+                        <a href="Articles.php?query=del" class="btn btn-danger">Supprimer un article</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <footer>
             <p>

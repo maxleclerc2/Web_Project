@@ -78,6 +78,10 @@
                 }
             }
 
+            echo "<li class='NavAccueil'>";
+            echo "<a href='Panier.php'>Mon panier</a>";
+            echo "</li>";
+
             if(isset($_SESSION["admin"]) && $_SESSION["admin"] == 1) {
                 echo "<li class='NavParcours'>";
                 echo "<a href='Administration.php'>Espace</br>administrateur</a>";
