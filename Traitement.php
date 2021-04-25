@@ -93,12 +93,12 @@
                 VALUES ('$adm', '$nom', '$prenom', '$mail', '$telephone', '$mdp');";
                 $res = $con->query($req);
 
-                $req = "SELECT Id_User FROM utilisateur WHERE Mail = '$mail'";
-                $res = $con->query($req);
-
                 if(!$res) {
                     $message = "Une erreur est survenue.";
                 }
+
+                $req = "SELECT Id_User FROM utilisateur WHERE Mail = '$mail'";
+                $res = $con->query($req);
 
                 if($res->num_rows > 0) {
                     $row = $res->fetch_assoc();
@@ -133,7 +133,50 @@
                     $message = "Une erreur est survenue.";
                 }
             } elseif(isset($_POST["modUsrNom"])) {
+                $idUser = $_POST["modUsrId"];
+                $nom = $_POST["modUsrNom"];
+                $prenom = $_POST["modUsrPrenom"];
+                $mail = $_POST["modUsrMail"];
+                $telephone = $_POST["modUsrPortable"];
+                $mdp = $_POST["modUsrMdp"];
+                $adm = $_POST["radioAdmin"];
 
+                $req = "UPDATE `Utilisateur`
+                SET `Admin` = '$adm', `Nom` = '$nom', `Prenom` = '$prenom', `Mail` = '$mail', `Telephone` = '$telephone', `Mot_De_Passe` = '$mdp'
+                WHERE `Id_User` = '$idUser'";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                }
+
+                $ligne1 = $_POST["modUsrL1"];
+                $ligne2 = $_POST["modUsrL2"];
+                $cp = $_POST["modUsrCp"];
+                $ville = $_POST["modUsrVille"];
+                $pays = $_POST["modUsrPays"];
+
+                $req = "UPDATE `Adresse`
+                SET `Adresse_Ligne_1` = '$ligne1', `Adresse_Ligne_2` = '$ligne2', `Code_Postal` = '$cp', `Ville` = '$ville', `Pays` = '$pays'
+                WHERE `Id_User` = '$idUser'";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                }
+
+                $titulaire = $_POST["modUsrTitulaire"];
+                $num = $_POST["modUsrNum"];
+                $exp = $_POST["modUsrExp"];
+
+                $req = "UPDATE `Paiement`
+                SET `Titulaire` = '$titulaire', `Numero` = '$num', `Expiration` = '$exp'
+                WHERE `Id_User` = '$idUser'";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                }
             } elseif(isset($_POST["delUsrId"])) {
                 $idUsr = $_POST["delUsrId"];
                 $req = "DELETE FROM `Utilisateur` WHERE `Id_User`='$idUsr'";
