@@ -77,7 +77,10 @@
 
             echo "</ul>
             </div>
-            </nav>";
+            </nav>
+            
+            <section>
+                <div class='Global'>";
 
             $message = "Opération terminée avec succès.";
 
@@ -200,10 +203,61 @@
                     $message = "Une erreur est survenue.";
                 }
             } elseif(isset($_POST["addCatTitre"])) {
+                $titre = $_POST["addCatTitre"];
+                $description = $_POST["addCatDesc"];
+                $slug = $_POST["addCatSlug"];
 
-            } elseif(isset($_POST["modCatTitre"])) {
+                $req = "INSERT INTO `Categorie`(`Titre_Categorie`, `Description_Categorie`, `Slug_Categorie`)
+                VALUES ('$titre', '$description', '$slug');";
+                $res = $con->query($req);
 
-            } elseif(isset($_POST["delCatTitre"])) {
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                }
+            } elseif(isset($_POST["modCatId"])) {
+                $idCat = $_POST["modCatId"];
+                $titre = $_POST["modCatTitre"];
+                $description = $_POST["modCatDesc"];
+                $slug = $_POST["modCatSlug"];
+
+                $req = "UPDATE `Categorie`
+                SET `Titre_Categorie` = '$titre', `Description_Categorie` = '$description', `Slug_Categorie` = '$slug'
+                WHERE `Id_Category` = '$idCat'";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                }
+            } elseif(isset($_POST["delCatId"])) {
+                $idCat = $_POST["delCatId"];
+                $req = "DELETE FROM `Categorie` WHERE `Id_Category`='$idCat'";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                }
+
+                $req = "SELECT Nom_Produit FROM `Produit` WHERE `Id_Category`='$idCat'";
+                $res = $con->query($req);
+
+                if($res->num_rows > 0) {
+                    echo "<h3>Attention, ces produits n'ont plus de catégorie :</h3>";
+                    while($row = $res->fetch_assoc()) {
+                        echo "<p>" . $row["Nom_Produit"] . "</p>";
+                    }
+                } else {
+                    echo "<h3>Aucun produit n'a été affecté par la suppresion.</h3>";
+                }
+
+                $req = "UPDATE `Produit`
+                SET `Id_Category` = 0
+                WHERE `Id_Category` = '$idCat'";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                }
+
 
             } elseif(isset($_POST["addProdNom"])) {
 
@@ -214,10 +268,8 @@
             } else {
                 header("Location: Administration.php");
             }
-
-            echo "<section>
-            <div class='Global'>
-            <h3>" . $message . "</h3>
+            
+            echo "<h3>" . $message . "</h3>
             </div>
             </section>";
         ?>
