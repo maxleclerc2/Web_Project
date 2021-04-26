@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>SANDBOX</title>
+        <title>Mon compte</title>
 
         <meta charset="UTF-8">
         <meta name="description" content="SANDBOX">

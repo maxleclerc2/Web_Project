@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>SANDBOX</title>
+        <title>Traitement de la requête</title>
 
         <meta charset="UTF-8">
         <meta name="description" content="SANDBOX">

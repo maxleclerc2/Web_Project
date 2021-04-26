@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>SANDBOX</title>
+        <title>Produit</title>
 
         <meta charset="UTF-8">
         <meta name="description" content="SANDBOX">
@@ -75,7 +75,8 @@
             </div>
             </nav>";
 
-            echo "<div class='Globale'>";
+            echo "<section>
+            <div class='Globale'>";
 
             if(isset($_GET["product"])) {
                 $slug = $_GET["product"];
@@ -86,15 +87,26 @@
 
                 if($res->num_rows > 0) {
                     $row = $res->fetch_assoc();
-                    echo "<p>" . $row["Nom_Produit"] . "</p>";
-                    echo "<p>" . $row["Description_Produit"] . "</p>";
-                    echo "<p>" . $row["Prix_Produit"] . " €</p>";
+
+                    echo "<h3>" . $row["Nom_Produit"] . "</h3>
+                    <br>
+                    <p>" . $row["Description_Produit"] . "</p>
+                    <br>
+                    <p>Prix unitaire : " . $row["Prix_Produit"] . " €</p>
+                    <br>
+                    <p>Référence " . $row["Reference_Produit"] . "</p>
+                    <br>
+                    <div class='BoutonGauche'>
+                        <a href='#' class='btn btn-add'>Ajouter au panier</a>
+                    </div>";
                 }
             } else {
                 header("Location: Boutique.php");
             }
 
-            echo "</div>";
+            echo "</div>
+            <br>
+            </section>";
         ?>
 
         <footer>

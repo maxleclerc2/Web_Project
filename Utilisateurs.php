@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>SANDBOX</title>
+        <title>Gestion des utilisateurs</title>
 
         <meta charset="UTF-8">
         <meta name="description" content="SANDBOX">
@@ -433,7 +433,7 @@
                                     <form name='Form' method='POST' action='Utilisateurs.php?query=mod'>
                                         <div>
                                             <div class='FormulaireGauche'>
-                                                <label for='modUsrId'>Utilisateur à supprimer :</label>
+                                                <label for='modUsrId'>Utilisateur à modifier :</label>
                                             </div>
                                             <div class='FormulaireDroit'>
                                                 <select name='modUsrId'>";

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bienvenue sur ma page d'accueil !</title>
+        <title>Accueil</title>
 
         <meta charset="UTF-8">
         <meta name="description" content="Page d'accueil du site perso">
@@ -17,7 +17,7 @@
 
     <body>
         <header>
-            <h1>Maxence Leclerc</h1>
+            <h1>K-Rouf</h1>
         </header>
 
         <?php
@@ -77,19 +77,43 @@
         ?>
 
         <section>
-            <h2>Présentation</h2>
+            <h2>Bienvenue sur K-Rouf, supermarché et commerce en ligne</h2>
 
             <div class="Globale">
-                <div class="Gauche">
-                    <img src="./Ressources/Wazowski Face Swap 1.jpg" alt="eh" height="300">
+                <br>
+
+                <div>
+                    <div class="AccueilGauche">
+                        <p>Vous souhaitez découvrir notre catalogue ? Alors c'est juste ici !<p>
+                    </div>
+                    <div class='BoutonDroit'>
+                        <a href='Boutique.php' class='btn btn-add'>Tout nos produits</a>
+                    </div>
                 </div>
-    
-                <div class="Droite">
-                    <p>
-                        Rapide description.<br />
-                        Sur deux lignes.
-                    </p>
+
+                <br>
+
+                <div>
+                    <?php
+                        if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+                            echo "<div class='BoutonGauche'>
+                                <a href='Compte.php' class='btn btn-add'>Mon compte</a>
+                            </div>
+                            <div class='AccueilDroit'>
+                                <p>Heureux de vous revoir ! Vous pouvez modifier vos informations sur votre profil.</p>
+                            </div>";
+                        } else {
+                            echo "<div class='BoutonGauche'>
+                                <a href='Connexion.php' class='btn btn-add'>Se connecter</a>
+                            </div>
+                            <div class='AccueilDroit'>
+                                <p>Vous avez dèjà un compte ? Bon retour parmis nous !</p>
+                            </div>";
+                        }
+                    ?>
                 </div>
+
+                <br>
             </div>
         </section>
 

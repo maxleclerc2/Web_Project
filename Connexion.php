@@ -33,7 +33,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bienvenue sur ma page d'accueil !</title>
+        <title>Se connecter</title>
 
         <meta charset="UTF-8">
         <meta name="description" content="Page d'accueil du site perso">
@@ -104,23 +104,38 @@
             </nav>";
         ?>
 
-        <div class="message">
-            <?php 
-                if($message!="") {
-                    echo $message;
-                } 
-            ?>
-        </div>
+        <section>
+            <div class="Global">
+                <div class="message">
+                    <?php 
+                        if($message!="") {
+                            echo $message;
+                        } 
+                    ?>
+                </div>
 
-        <div>
-            <form name="Form" method="POST" action="">
-                <label for="formMail">E-Mail :</label>
-                <input type="text" id="formMail" name="formMail"><br>
-                <label for="formPsw">Mot de passe :</label>
-                <input type="text" id="formPsw" name="formPsw"><br>
-                <input type="submit" id="confirmSub" name="confirmSub" value="Confirmer">
-            </form>
-        </div>
+                <form name="Form" method="POST" action="">
+                    <div>
+                        <div class="FormulaireGauche">
+                            <label for="formMail">E-Mail :</label>
+                        </div>
+                        <div class="FormulaireDroit">
+                            <input type="text" id="formMail" name="formMail">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="FormulaireGauche">
+                            <label for="formPsw">Mot de passe :</label>
+                        </div>
+                        <div class="FormulaireDroit">
+                            <input type="text" id="formPsw" name="formPsw">
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" id="confirmSub" name="confirmSub" value="Confirmer">
+                </form>
+            </div>
+        </section>
         
         <footer>
             <p>

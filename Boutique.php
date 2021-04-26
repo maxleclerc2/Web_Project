@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>SANDBOX</title>
+        <title>Boutique</title>
 
         <meta charset="UTF-8">
         <meta name="description" content="SANDBOX">
@@ -75,6 +75,7 @@
             </div>
             </nav>";
 
+            echo "<section>";
             echo "<div class='Globale'>";
 
             if(isset($_GET["category"])) {
@@ -87,30 +88,77 @@
 
                 if($res->num_rows > 0) {
                     $row = $res->fetch_assoc();
-                    echo "<h2>" . $row["Description_Categorie"] . "</h2>";
-                    echo "<a href='Produit.php?product=" . $row["Slug_Produit"] . "'>" . $row["Nom_Produit"] . "</a>";
-                    echo "</br>";
+                    echo "<h2>" . $row["Description_Categorie"] . "</h2>
+                    <div>
+                        <div class='Gauche'>
+                            <h4>Nom du produit</h4>
+                        </div>
+                        <div class='Droite'>
+                            <h4>Prix du produit</h4>
+                        </div>
+                    </div>";
+
+                    echo "<div>
+                        <div class='Gauche'>
+                            <p>
+                            <a href='Produit.php?product=" . $row["Slug_Produit"] . "'>" . $row["Nom_Produit"] . "</a>
+                            </p>
+                        </div>
+                        <div class='Droite'>
+                            <p>" .$row["Prix_Produit"] . " €</p>
+                        </div>
+                    </div>";
 
                     while($row = $res->fetch_assoc()) {
-                        echo "<a href='Produit.php?product=" . $row["Slug_Produit"] . "'>" . $row["Nom_Produit"] . "</a>";
-                        echo "</br>";
+                        echo "<div>
+                            <div class='Gauche'>
+                                <p>
+                                <a href='Produit.php?product=" . $row["Slug_Produit"] . "'>" . $row["Nom_Produit"] . "</a>
+                                </p>
+                            </div>
+                            <div class='Droite'>
+                                <p>" .$row["Prix_Produit"] . " €</p>
+                            </div>
+                        </div>";
                     }
+                } else {
+                    echo "<h2>Aucun produit ne correspond à cette catégorie.</h2>";
                 }
             } else {
-                $req = "SELECT * from produit p;";
+                $req = "SELECT Slug_Produit, Nom_Produit, Prix_Produit from produit p;";
                 $res = $con->query($req);
 
                 echo "<h2>Retrouvez tous nos produits au même endroit !</h2>";
-
+                
                 if($res->num_rows > 0) {
+                    echo "<div>
+                        <div class='Gauche'>
+                            <h4>Nom du produit</h4>
+                        </div>
+                        <div class='Droite'>
+                            <h4>Prix du produit</h4>
+                        </div>
+                    </div>";
+
                     while($row = $res->fetch_assoc()) {
-                        echo "<a href='Produit.php?product=" . $row["Slug_Produit"] . "'>" . $row["Nom_Produit"] . "</a>";
-                        echo "</br>";
+                        echo "<div>
+                            <div class='Gauche'>
+                                <p>
+                                <a href='Produit.php?product=" . $row["Slug_Produit"] . "'>" . $row["Nom_Produit"] . "</a>
+                                </p>
+                            </div>
+                            <div class='Droite'>
+                                <p>" .$row["Prix_Produit"] . " €</p>
+                            </div>
+                        </div>";
                     }
+                } else {
+                    echo "<h3>Cependant il n'y a aucun produit... !</h3>";
                 }
             }
 
             echo "</div>";
+            echo "</section>";
         ?>
 
         <footer>

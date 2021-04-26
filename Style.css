@@ -97,14 +97,24 @@ section {
     margin: 0 10%;
 }
 
+.AccueilGauche {
+    display: inline-block;
+    width: 25%;
+}
+
+.AccueilDroit {
+    display: inline-block;
+    width: 25%;
+}
+
 .Gauche {
-    float: left;
-    width: 30%;
+    display: inline-block;
+    width: 20%;
 }
 
 .Droite {
-    float: right;
-    width: 70%;
+    display: inline-block;
+    width: 10%;
 }
 
 .Gauche-Comp, .SousGauche {
