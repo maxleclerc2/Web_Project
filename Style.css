@@ -81,18 +81,6 @@ section {
     height: auto;
 }
 
-/*
-.Administration {
-    width: auto;
-    height: auto;
-}
-
-.Presentation {
-    width: auto;
-    height: auto;
-}
-*/
-
 .Globale {
     margin: 0 10%;
 }
@@ -154,22 +142,22 @@ section {
     background-color: rgba(135, 206, 250, 0.3);
 }
 
-.NavParcours :hover {
+.NavBoutique :hover {
     border-top: 5px solid red;
     background-color: rgba(255, 0, 0, 0.3);
 }
 
-.NavCompetences :hover {
+.NavPanier :hover {
     border-top: 5px solid lightgreen;
     background-color: rgba(144, 238, 144, 0.3);
 }
 
-.NavLoisirs :hover {
+.NavAdmin :hover {
     border-top: 5px solid steelblue;
     background-color: rgba(70, 130, 180, 0.3);
 }
 
-.NavContact :hover {
+.NavUtilisateur :hover {
     border-top: 5px solid lightsalmon;
     background-color: rgba(255, 160, 122, 0.3);
 }
