@@ -88,7 +88,7 @@
                             <div class='Global'>
                             <h1>Ajouter un nouvel utilisateur</h1>
                 
-                            <form name='Form' method='POST' action='Traitement.php'>
+                            <form name='Form' method='POST' onsubmit='return addUsr()' action='Traitement.php'>
 
                                 <h2>Informations générales</h3>
                                 <br>
@@ -220,7 +220,7 @@
                                 </div>
 
                                 <br>
-                                <input type='submit' id='confirmSub' name='confirmSub' value='Ajouter le nouvel utilisateur' ><br>
+                                <input type='submit' id='confirmSub' name='confirmSub' value='Ajouter le nouvel utilisateur'><br>
                             
                             </form>
                 
@@ -250,7 +250,7 @@
                                     <div class='Global'>
                                     <h1>Modification de " . $prenom . " " . $nom . "</h1>
                         
-                                    <form name='Form' method='POST' action='Traitement.php'>
+                                    <form name='Form' method='POST' action='Traitement.php' onsubmit='return modUsr()'>
                                         <input type='hidden' id='modUsrId' name='modUsrId' value='" . $idUsr . "'>
 
                                         <h2>Informations générales</h3>
@@ -507,5 +507,8 @@
                 Tous droits réservés
             </p>
         </footer>
+
+        <script src="Javascript.js"></script>
+
     </body>
 </html>

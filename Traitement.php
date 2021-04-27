@@ -83,6 +83,7 @@
                 <div class='Global'>";
 
             $message = "Opération terminée avec succès.";
+            $info = "";
 
             if(isset($_POST["addUsrNom"])) {
                 $nom = $_POST["addUsrNom"];
@@ -98,6 +99,7 @@
 
                 if(!$res) {
                     $message = "Une erreur est survenue.";
+                    $info = "Veuillez vérifier que le mail n'est pas déjà utilisé.";
                 }
 
                 $req = "SELECT Id_User FROM utilisateur WHERE Mail = '$mail'";
@@ -151,6 +153,7 @@
 
                 if(!$res) {
                     $message = "Une erreur est survenue.";
+                    $info = "Veuillez vérifier que le mail n'est pas déjà utilisé.";
                 }
 
                 $ligne1 = $_POST["modUsrL1"];
@@ -213,6 +216,7 @@
 
                 if(!$res) {
                     $message = "Une erreur est survenue.";
+                    $info = "Veuillez vérifier que le slug n'est pas déjà utilisé.";
                 }
             } elseif(isset($_POST["modCatId"])) {
                 $idCat = $_POST["modCatId"];
@@ -227,6 +231,7 @@
 
                 if(!$res) {
                     $message = "Une erreur est survenue.";
+                    $info = "Veuillez vérifier que le slug n'est pas déjà utilisé.";
                 }
             } elseif(isset($_POST["delCatId"])) {
                 $idCat = $_POST["delCatId"];
@@ -275,6 +280,7 @@
 
                 if(!$res) {
                     $message = "Une erreur est survenue.";
+                    $info = "Veuillez vérifier que le slug et la référence ne sont pas déjà utilisés.";
                 }
             } elseif(isset($_POST["modProdId"])) {
                 $idProd = $_POST["modProdId"];
@@ -296,6 +302,7 @@
 
                 if(!$res) {
                     $message = "Une erreur est survenue.";
+                    $info = "Veuillez vérifier que le slug et la référence ne sont pas déjà utilisés.";
                 }
             } elseif(isset($_POST["delProdId"])) {
                 $idProd = $_POST["delProdId"];
@@ -310,6 +317,7 @@
             }
             
             echo "<h3>" . $message . "</h3>
+            <h4>" . $info . "</h4>
             </div>
             </section>";
         ?>

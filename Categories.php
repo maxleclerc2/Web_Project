@@ -88,7 +88,7 @@
                             <div class='Global'>
                             <h1>Ajouter une nouvelle catégorie</h1>
                 
-                            <form name='Form' method='POST' action='Traitement.php'>
+                            <form name='Form' method='POST' action='Traitement.php' onsubmit='return addCat()'>
                                 <div>
                                     <div class='FormulaireGauche'>
                                         <label for='addCatTitre'>* Titre :</label>
@@ -143,7 +143,7 @@
                                     <div class='Global'>
                                         <h1>Modification de " . $titre . "</h1>
                             
-                                        <form name='Form' method='POST' action='Traitement.php'>
+                                        <form name='Form' method='POST' action='Traitement.php' onsubmit='return modCat()'>
                                             <input type='hidden' id='modCatId' name='modCatId' value='" . $idCat . "'>
 
                                             <div>
@@ -265,5 +265,8 @@
                 Tous droits réservés
             </p>
         </footer>
+
+        <script src="Javascript.js"></script>
+
     </body>
 </html>

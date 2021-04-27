@@ -88,7 +88,7 @@
                             <div class='Global'>
                                 <h1>Ajouter un nouvel article</h1>
                     
-                                <form name='Form' method='POST' action='Traitement.php'>
+                                <form name='Form' method='POST' action='Traitement.php' onsubmit='return addProd()'>
                                     <div>
                                         <div class='FormulaireGauche'>
                                             <label for='addProdNom'>* Nom :</label>
@@ -200,7 +200,7 @@
                                     <div class='Global'>
                                         <h1>Modification de " . $nom . "</h1>
                             
-                                        <form name='Form' method='POST' action='Traitement.php'>
+                                        <form name='Form' method='POST' action='Traitement.php' onsubmit='return modProd()'>
                                             <input type='hidden' id='modProdId' name='modProdId' value='" . $idProd . "'>
 
                                             <div>
@@ -374,5 +374,8 @@
                 Tous droits réservés
             </p>
         </footer>
+
+        <script src="Javascript.js"></script>
+
     </body>
 </html>
