@@ -188,7 +188,7 @@
                                     <form name='Form' method='POST' action='Categories.php?query=mod'>
                                         <div>
                                             <div class='FormulaireGauche'>
-                                                <label for='delCatId'>Catégorie à modifier :</label>
+                                                <label for='modCatId'>Catégorie à modifier :</label>
                                             </div>
                                             <div class='FormulaireDroit'>
                                                 <select name='modCatId'>";
@@ -219,8 +219,8 @@
                             <div class='Global'>
                                 <h1>Supprimer une catégorie</h1>
 
-                                <h3>Les produits appartenant à la catégories supprimée ne seront pas supprimés.</h3>
-                                <h4>Pensez à assigner une nouvelles catégorie aux produits.</h4>
+                                <h3>Les produits appartenant à la catégorie supprimée ne seront pas supprimés.</h3>
+                                <h4>Pensez à assigner une nouvelle catégorie aux produits.</h4>
                     
                                 <form name='Form' method='POST' action='Traitement.php'>
                                     <div>

@@ -260,11 +260,51 @@
 
 
             } elseif(isset($_POST["addProdNom"])) {
+                $nom = $_POST["addProdNom"];
+                $description = $_POST["addProdDesc"];
+                $prix = $_POST["addProdPrix"];
+                $quantite = $_POST["addProdQuantite"];
+                $image = $_POST["addProdImage"];
+                $slug = $_POST["addProdSlug"];
+                $reference = $_POST["addProdRef"];
+                $idCat = $_POST["addProdCat"];
 
-            } elseif(isset($_POST["modProdNom"])) {
+                $req = "INSERT INTO `Produit`(`Id_Category`, `Reference_Produit`, `Slug_Produit`, `Nom_Produit`, `Prix_Produit`, `Quantite_Produit`,  `Description_Produit`, `Image_Produit`)
+                VALUES ('$idCat', '$reference', '$slug', '$nom', '$prix', '$quantite', '$description', '$image');";
+                $res = $con->query($req);
 
-            } elseif(isset($_POST["delProdNom"])) {
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                }
+            } elseif(isset($_POST["modProdId"])) {
+                $idProd = $_POST["modProdId"];
+                $nom = $_POST["modProdNom"];
+                $description = $_POST["modProdDesc"];
+                $prix = $_POST["modProdPrix"];
+                $quantite = $_POST["modProdQuantite"];
+                $image = $_POST["modProdImage"];
+                $slug = $_POST["modProdSlug"];
+                $reference = $_POST["modProdRef"];
+                $idCat = $_POST["modProdCat"];
 
+                $req = "UPDATE `Produit`
+                SET `Nom_Produit` = '$nom', `Description_Produit` = '$description', `Prix_Produit` = '$prix',
+                `Quantite_Produit` = '$quantite', `Image_Produit` = '$image', `Slug_Produit` = '$slug',
+                `Reference_Produit` = '$reference', `Id_Category` = '$idCat'
+                WHERE `Id_Product` = '$idProd'";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                }
+            } elseif(isset($_POST["delProdId"])) {
+                $idProd = $_POST["delProdId"];
+                $req = "DELETE FROM `Produit` WHERE `Id_Product`='$idProd'";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                }
             } else {
                 header("Location: Administration.php");
             }
