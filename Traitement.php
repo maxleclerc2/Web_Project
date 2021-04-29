@@ -1,9 +1,5 @@
 <?php
     session_start();
-
-    if(!isset($_SESSION["admin"]) || $_SESSION["admin"] != 1) {
-        header("Location: Connexion.php");
-    }
 ?>
 
 <!DOCTYPE html>
@@ -312,9 +308,94 @@
                 if(!$res) {
                     $message = "Une erreur est survenue.";
                 }
+            } elseif(isset($_POST["modCompteNom"])) {
+                $message = "Vos informations ont été modifiées avec succès.";
+
+                $idUser = $_SESSION["id"];
+                $nom = $_POST["modCompteNom"];
+                $prenom = $_POST["modComptePrenom"];
+                $mail = $_POST["modCompteMail"];
+                $telephone = $_POST["modComptePortable"];
+                $mdp = $_POST["modCompteMdp"];
+
+                $req = "UPDATE `Utilisateur`
+                SET `Nom` = '$nom', `Prenom` = '$prenom', `Mail` = '$mail', `Telephone` = '$telephone', `Mot_De_Passe` = '$mdp'
+                WHERE `Id_User` = '$idUser'";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue...";
+                    $info = "Cette adresse mail est peut-être déjà liée à un autre compte.";
+                }
+            } elseif(isset($_POST["modAdresseL1"])) {
+                $message = "Vos informations ont été modifiées avec succès.";
+
+                $idUser = $_SESSION["id"];
+                $ligne1 = $_POST["modAdresseL1"];
+                $ligne2 = $_POST["modAdresseL2"];
+                $cp = $_POST["modAdresseCp"];
+                $ville = $_POST["modAdresseVille"];
+                $pays = $_POST["modAdressePays"];
+
+                $req = "UPDATE `Adresse`
+                SET `Adresse_Ligne_1` = '$ligne1', `Adresse_Ligne_2` = '$ligne2', `Code_Postal` = '$cp', `Ville` = '$ville', `Pays` = '$pays'
+                WHERE `Id_User` = '$idUser'";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue...";
+                }
+            } elseif(isset($_POST["modCarteTitulaire"])) {
+                $message = "Vos informations ont été modifiées avec succès.";
+
+                $idUser = $_SESSION["id"];
+                $titulaire = $_POST["modCarteTitulaire"];
+                $num = $_POST["modCarteNum"];
+                $exp = $_POST["modCarteExp"];
+
+                $req = "UPDATE `Paiement`
+                SET `Titulaire` = '$titulaire', `Numero` = '$num', `Expiration` = '$exp'
+                WHERE `Id_User` = '$idUser'";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue...";
+                }
+            } elseif(isset($_POST["delCompte"])) {
+                $message = "Votre compte a bien été supprimé.";
+                $info = "A bientôt sur K-Rouf !";
+
+                $idUsr = $_SESSION["id"];
+                $req = "DELETE FROM `Utilisateur` WHERE `Id_User`='$idUsr'";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                    $info = "";
+                }
+
+                $req = "DELETE FROM `Adresse` WHERE `Id_User`='$idUsr'";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                    $info = "";
+                }
+
+                $req = "DELETE FROM `Paiement` WHERE `Id_User`='$idUsr'";
+                $res = $con->query($req);
+
+                if(!$res) {
+                    $message = "Une erreur est survenue.";
+                    $info = "";
+                }
+
+                unset($_SESSION["loggedin"]);
+                unset($_SESSION["admin"]);
+                unset($_SESSION["id"]);
             } else {
                 header("Location: Administration.php");
-            }
+            } 
             
             echo "<h3>" . $message . "</h3>
             <h4>" . $info . "</h4>

@@ -107,7 +107,7 @@
                                 <a href='Connexion.php' class='btn btn-add'>Se connecter</a>
                             </div>
                             <div class='AccueilDroit'>
-                                <p>Vous avez dèjà un compte ? Bon retour parmis nous !</p>
+                                <p>Vous avez déjà un compte ? Bon retour parmis nous !</p>
                             </div>";
                         }
                     ?>

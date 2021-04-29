@@ -47,7 +47,7 @@ footer {
 
 nav {
     width: 100%;
-    height: 70px;
+    height: 75px;
     background-color: darkgrey;
 }
 
@@ -93,6 +93,18 @@ section {
 .AccueilDroit {
     display: inline-block;
     width: 25%;
+}
+
+.CompteGauche {
+    display: inline-block;
+    vertical-align: top;
+    width: 15%;
+}
+
+.CompteDroit {
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
 }
 
 .ProduitGauche {
@@ -208,7 +220,7 @@ section {
 
 .FormulaireGauche {
     display: inline-block;
-    width: 15%;
+    width: 20%;
 }
 
 .FormulaireDroit {

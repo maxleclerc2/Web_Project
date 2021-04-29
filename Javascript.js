@@ -243,3 +243,87 @@ function modProd() {
         return true;
     }
 }
+
+function modCompte() {
+    const regexNum = /^\d+$/;
+    const regexMail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    var subConfirm = true;
+
+    var nom = document.getElementById("modCompteNom").value;
+    var prenom = document.getElementById("modComptePrenom").value;
+    var mdp = document.getElementById("modCompteMdp").value;
+    var mail = document.getElementById("modCompteMail").value;
+    var telephone = document.getElementById("modComptePortable").value;
+
+    if(nom == null || nom == "" || prenom == null || prenom == "" || mdp == null || mdp == "") {
+        subConfirm = false;
+    }
+
+    if(regexMail.test(mail) == false) {
+        subConfirm = false;
+    }
+    
+    if(telephone != "" && telephone != null) {
+        if(regexNum.test(telephone) == false) {
+            subConfirm = false;
+        }
+    }
+
+    if(subConfirm == false) {
+        alert("Veuillez compléter les champs marqués d'une étoile.\nVeuillez aussi vérifier que le numéro de portable, si rempli, contient uniquement des chiffres.");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function modAdresse() {
+    const regexCp = /^\d{5}$|^\d{5}-\d{4}$/;
+
+    var subConfirm = true;
+
+    var cp = document.getElementById("modAdresseCp").value;
+
+    if(cp != "" && cp != null) {
+        if(regexCp.test(cp) == false) {
+            subConfirm = false;
+        }
+    }
+
+    if(subConfirm == false) {
+        alert("Veuillez vérifier que le code postal, si rempli, contient uniquement des chiffres.");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function modCarte() {
+    const regexNum = /^\d+$/;
+    const regexExp = /^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/;
+
+    var subConfirm = true;
+
+    var numero = document.getElementById("modCarteNum").value;
+    var exp = document.getElementById("modCarteExp").value;
+
+    if(numero != "" && numero != null) {
+        if(regexNum.test(numero) == false) {
+            subConfirm = false;
+        }
+    }
+
+    if(exp != "" && exp != null) {
+        if(regexExp.test(exp) == false) {
+            subConfirm = false;
+        }
+    }
+
+    if(subConfirm == false) {
+        alert("Veuillez vérifier que le numéro, si rempli, contient uniquement des chiffres.\nVeuillez aussi vérifier que la date d'expiration est sous le format MM/AA.");
+        return false;
+    } else {
+        return true;
+    }
+}
