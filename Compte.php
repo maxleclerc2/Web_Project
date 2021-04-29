@@ -198,6 +198,29 @@
 
                             break;
                         case "commandes":
+                            $req = "SELECT `Id_Order`, `Total_Commande`, `Date_Commande` FROM `Commande` WHERE `Id_User`='$id'";
+                            $res = $con->query($req);
+
+                            if($res->num_rows > 0) {
+                                echo "<table style='width:100%'>
+                                    <tr>
+                                        <th>Numéro de<br>commande</th>
+                                        <th>Total<br>commande</th>
+                                        <th>Date</th>
+                                    </tr>";
+            
+                                    while($row = $res->fetch_assoc()) {
+                                        echo "<tr>
+                                                <th><a href='Commande.php?id=" . $row["Id_Order"] . "' style='margin-left:5em'>" . $row["Id_Order"] . "</a></th>
+                                                <th>" . $row["Total_Commande"] . "€</th>
+                                                <th>" . $row["Date_Commande"] . "</th>
+                                        </tr>";
+                                    }
+
+                                echo "</table>";
+                            } else {
+                                echo "<h2>Aucune commande disponible</h2>";
+                            }
 
                             break;
                         case "suppression":
