@@ -1,5 +1,11 @@
 <?php
     session_start();
+
+	if(!isset($_SESSION['cart'])){
+		$_SESSION['cart'] = array();
+	}
+ 
+	unset($_SESSION['qty_array']);
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +61,7 @@
                         }
                     echo "</div>
                     <br><br>
-                    <a href='#' class='btn btn-add'>Ajouter au panier</a>";
+                    <a href='Ajout_Panier.php?id=" . $row["Id_Product"] . "' class='btn btn-add'>Ajouter au panier</a>";
                 }
             } else {
                 header("Location: Boutique.php");

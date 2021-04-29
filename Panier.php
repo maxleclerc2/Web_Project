@@ -1,5 +1,7 @@
 <?php
     session_start();
+
+	// Source : https://www.sourcecodester.com/php/12137/simple-shopping-cart-using-session-php.html
 ?>
 
 <!DOCTYPE html>
@@ -22,129 +24,75 @@
 
         <?php
             include 'navbar.php';
-        ?>
+		
+			echo "<section>
+				<div class='Global'>
+					<h1>Mon panier</h1>";
 
-<div id="content_area">	
-	  
-	  <div class="panier_container">
-	  
-	  
-	  <div id="panier" align="right" style="padding:15px">
-	  <?php 
-	    if(isset($_SESSION['email_client'])){
-		
-		  echo "<b>Your Email:</b>" . $_SESSION['email_client'];
-		
-		}else{
-		
-		  echo "";
-		}
-	  
-	  ?>
-	  
-	   <b style="color:navy">Votre Panier - </b> Total : <?php total();?> Total prix: <?php total_prix(); ?>
-	   
-	   </div><!-- /.panier --> 
-	   
-	   <form action="" method="post" enctype="multipart/form-data">
-	   <table align="center" width="100%">
-	   
-	     <tr align="center">
-		   <th>Supprimer</th>
-		   <th>Produit</th>
-		   <th>Quantité</th>
-		   <th>prix</th>
-		 </tr>
-		 
-	<?php 
-		 $total = 0;
-   
-   $ip = get_ip();
-   
-   $acceder_pannier = mysqli_query($con, "select * from panier where adresse_ip='$ip' ");
-   
-   while($fetch_panier = mysqli_fetch_array($acceder_panier)){
-       
-	   $id_produit = $fetch_array['id_produit'];
-	   
-	   $resultat_produit = mysqli_query($con, "select * from produits where id_produit = '$id_produit'");
-	   
-       while($fetch_product = mysqli_fetch_array($resultat_produit)){
-                
-		$prix_produit = array($fetch_product['prix_produit']);
+					if(isset($_SESSION["message"])) {
+						echo "<h3>" . $_SESSION["message"] . "</h3>";
+						unset($_SESSION["message"]);
+					}
 
-        $titre_produit = $fetch_product['titre_produit'];
+					echo "<form method='POST' action='Update_Panier.php'>
+						<table style='display:inline-block'>
+							<tr>
+								<th>Supprimer</th>
+								<th>Nom</th>
+								<th>Prix</th>
+								<th>Quantité</th>
+								<th>Total produit</th>
+							</tr>";
+						
+							$_SESSION["total"] = 0;
+							if(!empty($_SESSION['cart'])){
+								//create array of initial qty which is 1
+								$index = 0;
 
-        $image_produit = $fetch_product['image_produit'];
-        
-        $prix_produit = $fetch_product['prix_produit'];
-        
-		$valeurs = array_sum($prix_produit);
-		
-		
-		$acc_qte = mysqli_query($con, "select * from panier where id_produit = '$id_produit'");
-		
-		$row_qte = mysqli_fetch_array($acceder_quantité);
-		
-		$qte = $row_qte['quantité'];
-		
-		$valures_qte = $valeurs * $qte;
-		
-		$total += $valeurs_qte;
+								if(!isset($_SESSION['qty_array'])){
+									$_SESSION['qty_array'] = array_fill(0, count($_SESSION['cart']), 1);
+								}
+
+								$req = "SELECT * FROM Produit WHERE Id_Product IN (" . implode(",",$_SESSION["cart"]) . ")";
+								$res = $con->query($req);
+
+								while($row = $res->fetch_assoc()){
+									echo "<tr>
+										<th>
+											<a href='Supprimer_Produit.php?id=" . $row["Id_Product"] . "&index=" . $index ."' class='btn btn-del'><span></span></a>
+										</th>
+										<th>" . $row["Nom_Produit"] . "</th>
+										<th>" . number_format($row["Prix_Produit"], 2) . "</th>
+										<input type='hidden' name='indexes[]' value='" . $index . "'>
+										<th><input type='text' value='" . $_SESSION['qty_array'][$index] . "' name='qty_" . $index . "'></th>
+										<th>" . number_format($_SESSION['qty_array'][$index]*$row["Prix_Produit"], 2) . "</th>
+									</tr>";
+
+									$_SESSION["total"] += $_SESSION['qty_array'][$index]*$row["Prix_Produit"];
+									$index ++;
+								}
+							} else{
+								echo "<tr>
+									<td colspan='4'>Aucun produit dans le panier</td>
+								</tr>";
+							}
+							echo "<tr>
+								<td colspan='4' align='right'><b>Total</b></td>
+								<td><b>" . number_format($_SESSION["total"], 2) . "</b></td>
+							</tr>
+						</table>
+
+						<br>
+
+						<a href='Vider_Panier.php' class='btn btn-del'><span></span>Vider le panier</a>
+						<button type='submit' class='btn btn-mod' name='save'>Mettre à jour<br>les quantités</button>
+						<a href='Validation.php' class='btn btn-add'><span></span>Passer commande</a>
+
+					</form>
 				
-   
-   ?>
-		 <tr align="center">
-		   <td><input type="checkbox" name="supprimer[]" value="<?php echo $id_produit;?>" /></td>
-		   <td>
-		   <?php echo $titre_produit;?>
-		   <br />
-		   <img src="              " />
-		   </td>
-		   <td><input type="text" size="4" name="qte" valeur="<?php echo $qte; ?>" /></td>
-		   <td><?php echo "$" . $prix_produit; ?></td>
-		 </tr>
-	   
-	<?php } } // End While  ?> 
-         
-		<tr>
-		   <td colspan="4" align="right"><b>Sub Total:</b></td>
-		   <td><?php echo  prix_total(); ?> </td>
-		</tr>
-	
-	    <tr align="center">
-		   <td colspan="2"><input type="submit" name="mettreajour_panier" value="MettreAJour Panier" /></td>
-		   <td><input type="submit" name="continuer" value="Continure Achats" /></td>
-		   <td><button><a href="checkout.php">Checkout</a></td>
-		</tr>
-	   </table>
-	   </form>
-	   
-	   <?php 
-	   if(isset($_POST['supprimer'])){
-	     
-		 foreach($_POST['supprimer'] as $id_supprimer){
-		   
-		  $executer_suppression = mysqli_query($con,"delete from panier where id_produit = '$id_supprimer' AND adresse_ip='$ip' ");
-		 
-		 if($executer_suppression){
-		    echo "<script>window.open('panier.php','_self')</script>";
-		 }
-		 }
-		 
-	   }
-	   
-	   if(isset($_POST['continuer'])){
-	     echo "<script>window.open('index.php','_self')</script>";
-	   }
-	   
-	   ?>
-	   
-	   </div><!-- /.pannier_container-->
-	  
-	  <div id="produits_box">   
+				</div>
+			</section>";
 
-        <?php
             include 'footer.php';
         ?>
     </body>

@@ -80,6 +80,9 @@
             } else {
                 header("Location: Compte.php?query=commandes");
             }
+
+            echo "</div>
+            </section>";
         ?>
 
         
