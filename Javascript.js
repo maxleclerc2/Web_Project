@@ -327,3 +327,57 @@ function modCarte() {
         return true;
     }
 }
+
+function valCommande() {
+    const regexNum = /^\d+$/;
+    const regexMail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const regexExp = /^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/;
+    const regexCp = /^\d{5}$|^\d{5}-\d{4}$/;
+
+    var subConfirm = true;
+
+    var nom = document.getElementById("valCommandeNom").value;
+    var prenom = document.getElementById("valCommandePrenom").value;
+    var mail = document.getElementById("valCommandeMail").value;
+    var telephone = document.getElementById("valCommandePortable").value;
+    var l1 = document.getElementById("valCommandeL1").value;
+    var cp = document.getElementById("valCommandeCp").value;
+    var ville = document.getElementById("valCommandeVille").value;
+    var pays = document.getElementById("valCommandePays").value;
+    var titulaire = document.getElementById("valCommandeTitulaire").value;
+    var numero = document.getElementById("valCommandeNum").value;
+    var exp = document.getElementById("valCommandeExp").value;
+
+    if(nom == null || nom == "" || prenom == null || prenom == "" || l1 == null || l1 == "" || ville == null || ville == "" || pays == null || pays == "" || titulaire == null || titulaire == "") {
+        subConfirm = false;
+    }
+
+    if(regexMail.test(mail) == false) {
+        subConfirm = false;
+    }
+    
+    if(telephone != "" && telephone != null) {
+        if(regexNum.test(telephone) == false) {
+            subConfirm = false;
+        }
+    }
+
+    if(regexCp.test(cp) == false) {
+        subConfirm = false;
+    }
+
+    if(regexNum.test(numero) == false) {
+        subConfirm = false;
+    }
+
+    if(regexExp.test(exp) == false) {
+        subConfirm = false;
+    }
+
+    if(subConfirm == false) {
+        alert("Veuillez compléter les champs marqués d'une étoile.\nVeuillez aussi vérifier que le numéro de portable, le code postal et le numéro de carte bleue, si remplis, sont uniquement des chiffres.");
+        return false;
+    } else {
+        return true;
+    }
+}

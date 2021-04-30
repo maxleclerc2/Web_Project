@@ -62,10 +62,10 @@
 											<a href='Supprimer_Produit.php?id=" . $row["Id_Product"] . "&index=" . $index ."' class='btn btn-del'><span></span></a>
 										</th>
 										<th>" . $row["Nom_Produit"] . "</th>
-										<th>" . number_format($row["Prix_Produit"], 2) . "</th>
+										<th>" . number_format($row["Prix_Produit"], 2) . "€</th>
 										<input type='hidden' name='indexes[]' value='" . $index . "'>
 										<th><input type='text' value='" . $_SESSION["qty_array"][$index] . "' name='qty_" . $index . "'></th>
-										<th>" . number_format($_SESSION["qty_array"][$index]*$row["Prix_Produit"], 2) . "</th>
+										<th>" . number_format($_SESSION["qty_array"][$index]*$row["Prix_Produit"], 2) . "€</th>
 									</tr>";
 
 									$_SESSION["total"] += $_SESSION["qty_array"][$index]*$row["Prix_Produit"];
@@ -78,7 +78,7 @@
 							}
 							echo "<tr>
 								<td colspan='4' align='right'><b>Total</b></td>
-								<td><b>" . number_format($_SESSION["total"], 2) . "</b></td>
+								<td><b>" . number_format($_SESSION["total"], 2) . "€</b></td>
 							</tr>
 						</table>
 

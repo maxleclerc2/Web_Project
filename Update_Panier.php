@@ -10,5 +10,7 @@
     
         $_SESSION['message'] = "Quantités mises à jour avec succès";
         header('location: Panier.php');
+    } else {
+        header('location: Panier.php');
     }
 ?>
