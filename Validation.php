@@ -45,6 +45,7 @@
 								<th>Total produit</th>
 							</tr>";
 
+                            $_SESSION["total"] = 0;
                             //create array of initial qty which is 1
                             $index = 0;
 
@@ -93,7 +94,7 @@
                             $telephone = "";
                         }
 
-                        echo "<form name='Form' method='POST' onsubmit='return valCommande()' action='Panier.php'>
+                        echo "<form name='Form' method='POST' onsubmit='return valCommande()' action='Traitement_Commande.php'>
                             <div>
                                 <div class='FormulaireGauche'>
                                     <label for='valCommandeNom'>* Nom :</label>

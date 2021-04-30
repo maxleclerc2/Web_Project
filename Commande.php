@@ -34,7 +34,7 @@
                 if($res->num_rows > 0) {
                     echo "<h2>Récapitulatif de la commande " . $id . "</h2>
                     
-                    <table>
+                    <table class='table-panier'>
                         <tr>
                             <th>Produit</th>
                             <th>Référence</th>
@@ -52,27 +52,30 @@
                         echo "<tr>
                             <th>" . $rowProd["Nom_Produit"] . "</th>
                             <th>" . $rowProd["Reference_Produit"] . "</th>
-                            <th>" . $rowProd["Prix_Produit"] . "</th>
+                            <th>" . $rowProd["Prix_Produit"] . "€</th>
                             <th>" . $row["Quantite_Commande"] . "</th>
-                            <th>" . $row["Prix_Commande"] . "</th>
+                            <th>" . $row["Prix_Commande"] . "€</th>
                         </tr>";
                     }
+
+                    echo "</table>";
 
                     $req = "SELECT * FROM Commande WHERE Id_Order = '$id'";
                     $res = $con->query($req);
                     $row = $res->fetch_assoc();
 
-                    echo "<br>
+                    echo "<h2>Informations de contact et de livraison</h2>
+                    <br>
                     <p>" . $row["Prenom_Commande"] . " " . $row["Nom_Commande"] . "</p>
-                    <p>" . $row["Mail_Commande"] . "</p>
-                    <p>" . $row["Telephone_Commande"] . "</p>
-                    <p>" . $row["Adresse_Ligne_1_Commande"] . "</p>
-                    <p>" . $row["Adresse_Ligne_2_Commande"] . "</p>
-                    <p>" . $row["Code_Postal_Commande"] . "</p>
-                    <p>" . $row["Ville_Commande"] . "</p>
-                    <p>" . $row["Pays_Commande"] . "</p>
-                    <p>" . $row["Total_Commande"] . "€</p>
-                    <p>" . $row["Date_Commande"] . "</p>";
+                    <p>E-Mail : " . $row["Mail_Commande"] . "</p>
+                    <p>Numéro de téléphone : " . $row["Telephone_Commande"] . "</p>
+                    <p>Adresse ligne 1 : " . $row["Adresse_Ligne_1_Commande"] . "</p>
+                    <p>Adresse ligne 2 : " . $row["Adresse_Ligne_2_Commande"] . "</p>
+                    <p>Code postal : " . $row["Code_Postal_Commande"] . "</p>
+                    <p>Ville : " . $row["Ville_Commande"] . "</p>
+                    <p>Pays : " . $row["Pays_Commande"] . "</p>
+                    <p>Total commande : " . $row["Total_Commande"] . "€</p>
+                    <p>Date de la commande : " . $row["Date_Commande"] . "</p>";
                 } else {
                     echo "<h2>Une erreur est survenue.</h2>";
                 }
@@ -83,12 +86,8 @@
 
             echo "</div>
             </section>";
-        ?>
-
-        
-
-        <?php
-            include 'footer.php';
+            
+            include "footer.php";
         ?>
     </body>
 </html>
