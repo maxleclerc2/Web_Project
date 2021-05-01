@@ -1,7 +1,7 @@
 <?php
     echo "<footer>
         <p>
-            Site web créé par Maxence Leclerc<br />
+            © 2021 K-Rouf<br>
             Tous droits réservés
         </p>
     </footer>";
