@@ -63,9 +63,16 @@
 										</th>
 										<th>" . $row["Nom_Produit"] . "</th>
 										<th>" . number_format($row["Prix_Produit"], 2) . "€</th>
-										<input type='hidden' name='indexes[]' value='" . $index . "'>
-										<th><input type='text' value='" . $_SESSION["qty_array"][$index] . "' name='qty_" . $index . "'></th>
-										<th>" . number_format($_SESSION["qty_array"][$index]*$row["Prix_Produit"], 2) . "€</th>
+										<input type='hidden' name='indexes[]' value='" . $index . "'>";
+										
+										if(($row["Quantite_Produit"] - $_SESSION["qty_array"][$index]) < 0) {
+											$_SESSION["message"] = "Votre commande comporte des produits dont nous n'avons pas suffisament de stock.<br>Les quantités ont été ajustées par rapport à nos disponibilités.";
+											echo "<th><input type='text' value='" . $row["Quantite_Produit"] . "' name='qty_" . $index . "'></th>";
+										} else {
+											echo "<th><input type='text' value='" . $_SESSION["qty_array"][$index] . "' name='qty_" . $index . "'></th>";
+										}
+
+										echo "<th>" . number_format($_SESSION["qty_array"][$index]*$row["Prix_Produit"], 2) . "€</th>
 									</tr>";
 
 									$_SESSION["total"] += $_SESSION["qty_array"][$index]*$row["Prix_Produit"];
@@ -82,9 +89,14 @@
 							</tr>
 						</table>
 
-						<br>
+						<br>";
 
-						<div>
+						if(isset($_SESSION["message"])) {
+							echo "<h3>" . $_SESSION["message"] . "</h3><br>";
+							unset($_SESSION["message"]);
+						}
+
+						echo "<div>
 							<a href='Vider_Panier.php' class='btn btn-del' style='vertical-align: middle'><span></span>Vider le panier</a>
 							<button type='submit' class='btn btn-mod' name='save' style='font-family: Times New Roman, Times, serif; vertical-align: middle'>Mettre à jour<br>les quantités</button>
 							<a href='Validation.php' class='btn btn-add' style='vertical-align: middle'><span></span>Passer commande</a>

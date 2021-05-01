@@ -60,8 +60,13 @@
                             echo "<img src='/Ressources/default-product.png' alt='placeholder' style='width:300px;height:300px;'>";
                         }
                     echo "</div>
-                    <br><br>
-                    <a href='Ajout_Panier.php?id=" . $row["Id_Product"] . "' class='btn btn-add'>Ajouter au panier</a>";
+                    <br><br>";
+                    
+                    if($row["Quantite_Produit"] <= 0) {
+                        echo "<a href='#' class='btn btn-del'>Produit indisponible</a>";
+                    } else {
+                        echo "<a href='Ajout_Panier.php?id=" . $row["Id_Product"] . "' class='btn btn-add'>Ajouter au panier</a>";
+                    }
                 }
             } else {
                 header("Location: Boutique.php");

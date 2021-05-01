@@ -125,6 +125,18 @@
                     $info = "";
                 }
 
+                $quantiteUpdate = $row["Quantite_Produit"] - $quantite;
+
+                $reqProduit = "UPDATE `Produit`
+                SET `Quantite_Produit` = '$quantiteUpdate'
+                WHERE `Id_Product` = '$idProd'";
+                $resProduit = $con->query($reqProduit);
+
+                if(!$resProduit) {
+                    $message = "Une erreur est survenue...";
+                    $info = "";
+                }
+
                 $index ++;
             }
 

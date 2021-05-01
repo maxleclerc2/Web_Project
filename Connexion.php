@@ -2,7 +2,11 @@
     session_start();
 
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
-        header("Location: Accueil.php");
+        if(isset($_SESSION["admin"]) && $_SESSION["admin"] == 1) {
+            header("Location: Administration.php");
+        } else {
+            header("Location: Accueil.php");
+        }
     }
 
     $message="";
@@ -23,7 +27,11 @@
             $_SESSION['loggedin'] = true;
             $_SESSION["id"] = $row["Id_User"];
             $_SESSION["admin"] = $row["Admin"];
-            header("Location: Accueil.php");
+            if($_SESSION["admin"] == 1) {
+                header("Location: Administration.php");
+            } else {
+                header("Location: Accueil.php");
+            }
         } else {
             $message = "Identifiant ou mot de passe invalide !";
         }
