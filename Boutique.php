@@ -31,7 +31,7 @@
             
                 $req = "SELECT * from produit p, categorie c
                 WHERE c.Slug_Categorie = '" . $slug . "' AND p.Id_Category = c.Id_Category
-                ;";
+                ORDER BY Nom_Produit;";
                 $res = $con->query($req);
 
                 if($res->num_rows > 0) {
@@ -73,7 +73,7 @@
                     echo "<h2>Aucun produit ne correspond à cette catégorie.</h2>";
                 }
             } else {
-                $req = "SELECT Slug_Produit, Nom_Produit, Prix_Produit from produit p;";
+                $req = "SELECT Slug_Produit, Nom_Produit, Prix_Produit from produit p ORDER BY Nom_Produit;";
                 $res = $con->query($req);
 
                 echo "<h2>Retrouvez tous nos produits au même endroit !</h2>";

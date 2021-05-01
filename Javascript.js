@@ -347,6 +347,7 @@ function valCommande() {
     var titulaire = document.getElementById("valCommandeTitulaire").value;
     var numero = document.getElementById("valCommandeNum").value;
     var exp = document.getElementById("valCommandeExp").value;
+    var secret = document.getElementById("valCommandeSecret").value;
 
     if(nom == null || nom == "" || prenom == null || prenom == "" || l1 == null || l1 == "" || ville == null || ville == "" || pays == null || pays == "" || titulaire == null || titulaire == "") {
         subConfirm = false;
@@ -371,6 +372,10 @@ function valCommande() {
     }
 
     if(regexExp.test(exp) == false) {
+        subConfirm = false;
+    }
+
+    if(regexNum.test(secret) == false) {
         subConfirm = false;
     }
 

@@ -250,6 +250,14 @@
                                 <div class='FormulaireDroit'>
                                     <input type='text' id='valCommandeExp' name='valCommandeExp' value='" . $exp . "' size='30'>
                                 </div>
+                            </div>
+                            <div>
+                                <div class='FormulaireGauche'>
+                                    <label for='valCommandeSecret'>* Code secret à 3 chiffres :</label>
+                                </div>
+                                <div class='FormulaireDroit'>
+                                    <input type='text' id='valCommandeSecret' name='valCommandeSecret' size='30'>
+                                </div>
                             </div>";
 
                             if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
