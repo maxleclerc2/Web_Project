@@ -68,6 +68,7 @@
 										if(($row["Quantite_Produit"] - $_SESSION["qty_array"][$index]) < 0) {
 											$_SESSION["message"] = "Votre commande comporte des produits dont nous n'avons pas suffisament de stock.<br>Les quantités ont été ajustées par rapport à nos disponibilités.";
 											echo "<th><input type='text' value='" . $row["Quantite_Produit"] . "' name='qty_" . $index . "'></th>";
+											$_SESSION["qty_array"][$index] = $row["Quantite_Produit"];
 										} else {
 											echo "<th><input type='text' value='" . $_SESSION["qty_array"][$index] . "' name='qty_" . $index . "'></th>";
 										}
