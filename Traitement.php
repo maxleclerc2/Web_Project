@@ -257,7 +257,7 @@
                     $message = "Une erreur est survenue.";
                 }
             } elseif(isset($_POST["modCompteNom"])) {
-                $message = "Vos informations ont été modifiées avec succès.";
+                $_SESSION["message"] = "Vos informations ont été modifiées avec succès.";
 
                 $idUser = $_SESSION["id"];
                 $nom = $_POST["modCompteNom"];
@@ -272,11 +272,12 @@
                 $res = $con->query($req);
 
                 if(!$res) {
-                    $message = "Une erreur est survenue...";
-                    $info = "Cette adresse mail est peut-être déjà liée à un autre compte.";
+                    $_SESSION["message"] = "Une erreur est survenue...<br>Cette adresse mail est peut-être déjà liée à un autre compte.";
                 }
+
+                header('location: Compte.php');
             } elseif(isset($_POST["modAdresseL1"])) {
-                $message = "Vos informations ont été modifiées avec succès.";
+                $_SESSION["message"] = "Vos informations ont été modifiées avec succès.";
 
                 $idUser = $_SESSION["id"];
                 $ligne1 = $_POST["modAdresseL1"];
@@ -291,10 +292,12 @@
                 $res = $con->query($req);
 
                 if(!$res) {
-                    $message = "Une erreur est survenue...";
+                    $_SESSION["message"] = "Une erreur est survenue...";
                 }
+
+                header('location: Compte.php?query=adresse');
             } elseif(isset($_POST["modCarteTitulaire"])) {
-                $message = "Vos informations ont été modifiées avec succès.";
+                $_SESSION["message"] = "Vos informations ont été modifiées avec succès.";
 
                 $idUser = $_SESSION["id"];
                 $titulaire = $_POST["modCarteTitulaire"];
@@ -307,8 +310,10 @@
                 $res = $con->query($req);
 
                 if(!$res) {
-                    $message = "Une erreur est survenue...";
+                    $_SESSION["message"] = "Une erreur est survenue...";
                 }
+
+                header('location: Compte.php?query=carte');
             } elseif(isset($_POST["delCompte"])) {
                 $message = "Votre compte a bien été supprimé.";
                 $info = "A bientôt sur K-Rouf !";
@@ -343,7 +348,7 @@
                 unset($_SESSION["id"]);
             } else {
                 header("Location: Administration.php");
-            } 
+            }
             
             echo "<h3>" . $message . "</h3>
             <h4>" . $info . "</h4>
