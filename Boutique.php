@@ -1,5 +1,11 @@
 <?php
     session_start();
+
+    if(!isset($_SESSION['cart'])){
+		$_SESSION['cart'] = array();
+	}
+ 
+	unset($_SESSION['qty_array']);
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +14,7 @@
         <title>Boutique</title>
 
         <meta charset="UTF-8">
-        <meta name="description" content="SANDBOX">
+        <meta name="description" content="Page de la boutique">
         <meta name="keywords" content="HTML, CSS, JavaScript, PHP">
         <meta name="author" content="Maxence Leclerc">
 
@@ -37,76 +43,75 @@
                 if($res->num_rows > 0) {
                     $row = $res->fetch_assoc();
                     echo "<h2>" . $row["Description_Categorie"] . "</h2>
-                    <div>
-                        <div class='Gauche'>
-                            <h4>Nom du produit</h4>
-                        </div>
-                        <div class='Droite'>
-                            <h4>Prix du produit</h4>
-                        </div>
-                    </div>";
+                    <table class='table-boutique'>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prix</th>
+                            <th>Ajouter au panier</th>
+                        </tr>";
 
-                    echo "<div>
-                        <div class='Gauche'>
-                            <p>
-                            <a href='Produit.php?product=" . $row["Slug_Produit"] . "'>" . $row["Nom_Produit"] . "</a>
-                            </p>
-                        </div>
-                        <div class='Droite'>
-                            <p>" .$row["Prix_Produit"] . " €</p>
-                        </div>
-                    </div>";
+                    echo "<tr>
+                        <th><a href='Produit.php?product=" . $row["Slug_Produit"] . "'>" . $row["Nom_Produit"] . "</a></th>
+                        <th>" .$row["Prix_Produit"] . " €</th>";
+
+                        if($row["Quantite_Produit"] <= 0) {
+                            echo "<th><a href='#' class='btn btn-del'>Produit indisponible</a></th>";
+                        } else {
+                            echo "<th><a href='Ajout_Panier.php?id=" . $row["Id_Product"] . "' class='btn btn-add'>Ajouter</a></th>";
+                        }
+
+                    echo "</tr> ";
 
                     while($row = $res->fetch_assoc()) {
-                        echo "<div>
-                            <div class='Gauche'>
-                                <p>
-                                <a href='Produit.php?product=" . $row["Slug_Produit"] . "'>" . $row["Nom_Produit"] . "</a>
-                                </p>
-                            </div>
-                            <div class='Droite'>
-                                <p>" .$row["Prix_Produit"] . " €</p>
-                            </div>
-                        </div>";
+                        echo "<tr>
+                            <th><a href='Produit.php?product=" . $row["Slug_Produit"] . "'>" . $row["Nom_Produit"] . "</a></th>
+                            <th>" .$row["Prix_Produit"] . " €</th>";
+
+                            if($row["Quantite_Produit"] <= 0) {
+                                echo "<th><a href='#' class='btn btn-del'>Produit indisponible</a></th>";
+                            } else {
+                                echo "<th><a href='Ajout_Panier.php?id=" . $row["Id_Product"] . "' class='btn btn-add'>Ajouter</a></th>";
+                            }
+
+                        echo "</tr> ";
                     }
                 } else {
                     echo "<h2>Aucun produit ne correspond à cette catégorie.</h2>";
                 }
             } else {
-                $req = "SELECT Slug_Produit, Nom_Produit, Prix_Produit from produit p ORDER BY Nom_Produit;";
+                $req = "SELECT * from produit p ORDER BY Nom_Produit;";
                 $res = $con->query($req);
 
                 echo "<h2>Retrouvez tous nos produits au même endroit !</h2>";
                 
                 if($res->num_rows > 0) {
-                    echo "<div>
-                        <div class='Gauche'>
-                            <h4>Nom du produit</h4>
-                        </div>
-                        <div class='Droite'>
-                            <h4>Prix du produit</h4>
-                        </div>
-                    </div>";
-
+                    echo "<table class='table-boutique'>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prix</th>
+                            <th>Ajouter au panier</th>
+                        </tr>";
                     while($row = $res->fetch_assoc()) {
-                        echo "<div>
-                            <div class='Gauche'>
-                                <p>
-                                <a href='Produit.php?product=" . $row["Slug_Produit"] . "'>" . $row["Nom_Produit"] . "</a>
-                                </p>
-                            </div>
-                            <div class='Droite'>
-                                <p>" .$row["Prix_Produit"] . " €</p>
-                            </div>
-                        </div>";
+                        echo "<tr>
+                            <th><a href='Produit.php?product=" . $row["Slug_Produit"] . "'>" . $row["Nom_Produit"] . "</a></th>
+                            <th>" .$row["Prix_Produit"] . " €</th>";
+
+                            if($row["Quantite_Produit"] <= 0) {
+                                echo "<th><a href='#' class='btn btn-del'>Produit indisponible</a></th>";
+                            } else {
+                                echo "<th><a href='Ajout_Panier.php?id=" . $row["Id_Product"] . "' class='btn btn-add'>Ajouter</a></th>";
+                            }
+
+                        echo "</tr> ";
                     }
                 } else {
                     echo "<h3>Cependant il n'y a aucun produit... !</h3>";
                 }
             }
 
-            echo "</div>";
-            echo "</section>";
+            echo "</table>
+                </div>
+            </section>";
             
             include 'footer.php';
         ?>

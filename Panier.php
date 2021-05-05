@@ -10,7 +10,7 @@
         <title>Mon panier</title>
 
         <meta charset="UTF-8">
-        <meta name="description" content="SANDBOX">
+        <meta name="description" content="Page du panier">
         <meta name="keywords" content="HTML, CSS, JavaScript, PHP">
         <meta name="author" content="Maxence Leclerc">
 
@@ -99,7 +99,7 @@
 
 						echo "<div>
 							<a href='Vider_Panier.php' class='btn btn-del' style='vertical-align: middle'><span></span>Vider le panier</a>
-							<button type='submit' class='btn btn-mod' name='save' style='font-family: Times New Roman, Times, serif; vertical-align: middle'>Mettre à jour<br>les quantités</button>
+							<button type='submit' class='btn btn-mod' name='save' style='vertical-align: middle'>Mettre à jour<br>les quantités</button>
 							<a href='Validation.php' class='btn btn-add' style='vertical-align: middle'><span></span>Passer commande</a>
 						</div>
 

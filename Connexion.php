@@ -44,8 +44,8 @@
         <title>Se connecter</title>
 
         <meta charset="UTF-8">
-        <meta name="description" content="Page d'accueil du site perso">
-        <meta name="keywords" content="HTML, CSS">
+        <meta name="description" content="Page de connexion">
+        <meta name="keywords" content="HTML, CSS, JavaScript, PHP">
         <meta name="author" content="Maxence Leclerc">
 
         <link rel="stylesheet" href="Style.css">
@@ -65,7 +65,7 @@
                 <div class="message">
                     <?php 
                         if($message!="") {
-                            echo $message;
+                            echo "<h3>". $message . "</h3>";
                         } 
                     ?>
                 </div>

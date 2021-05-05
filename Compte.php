@@ -14,7 +14,7 @@
         <title>Mon compte</title>
 
         <meta charset="UTF-8">
-        <meta name="description" content="SANDBOX">
+        <meta name="description" content="Page de gestion du compte">
         <meta name="keywords" content="HTML, CSS, JavaScript, PHP">
         <meta name="author" content="Maxence Leclerc">
 
@@ -207,7 +207,7 @@
                             $res = $con->query($req);
 
                             if($res->num_rows > 0) {
-                                echo "<table style='width:100%'>
+                                echo "<table class='table-panier'>
                                     <tr>
                                         <th>Numéro de<br>commande</th>
                                         <th>Total<br>commande</th>

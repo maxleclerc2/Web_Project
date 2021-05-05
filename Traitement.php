@@ -8,7 +8,7 @@
         <title>Traitement de la requête</title>
 
         <meta charset="UTF-8">
-        <meta name="description" content="SANDBOX">
+        <meta name="description" content="Page de traitement des requêtes">
         <meta name="keywords" content="HTML, CSS, JavaScript, PHP">
         <meta name="author" content="Maxence Leclerc">
 
@@ -148,6 +148,10 @@
 
                 if(!$res) {
                     $message = "Une erreur est survenue.";
+                }
+
+                if($idUsr == $_SESSION["id"]) {
+                    header("Location: Deconnexion.php");
                 }
             } elseif(isset($_POST["addCatTitre"])) {
                 $titre = $_POST["addCatTitre"];

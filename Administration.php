@@ -12,7 +12,7 @@
         <title>Espace administrateur</title>
 
         <meta charset="UTF-8">
-        <meta name="description" content="SANDBOX">
+        <meta name="description" content="Panneau d'administration">
         <meta name="keywords" content="HTML, CSS, JavaScript, PHP">
         <meta name="author" content="Maxence Leclerc">
 

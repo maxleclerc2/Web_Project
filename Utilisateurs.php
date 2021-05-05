@@ -12,7 +12,7 @@
         <title>Gestion des utilisateurs</title>
 
         <meta charset="UTF-8">
-        <meta name="description" content="SANDBOX">
+        <meta name="description" content="Page de gestion des utilisateurs">
         <meta name="keywords" content="HTML, CSS, JavaScript, PHP">
         <meta name="author" content="Maxence Leclerc">
 
@@ -390,7 +390,7 @@
 
                                                     if($res->num_rows > 0) {
                                                         while($row = $res->fetch_assoc()) {
-                                                            echo "<option value=" . $row["Id_User"] . ">" . $row["Nom"] . " "  . $row["Prenom"] . " (" . $row["Mail"] . ")</option>";
+                                                            echo "<option value=" . $row["Id_User"] . ">" . $row["Prenom"] . " "  . $row["Nom"] . " (" . $row["Mail"] . ")</option>";
                                                         }
                                                     } else {
                                                         echo "<option value='-1'>Aucun utilisateur trouvé</option>";

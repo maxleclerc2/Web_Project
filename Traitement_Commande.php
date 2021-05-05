@@ -14,8 +14,8 @@
         <title>Accueil</title>
 
         <meta charset="UTF-8">
-        <meta name="description" content="Page d'accueil du site perso">
-        <meta name="keywords" content="HTML, CSS">
+        <meta name="description" content="Page de traitement de la commande">
+        <meta name="keywords" content="HTML, CSS, JavaScript, PHP">
         <meta name="author" content="Maxence Leclerc">
 
         <link rel="stylesheet" href="Style.css">
